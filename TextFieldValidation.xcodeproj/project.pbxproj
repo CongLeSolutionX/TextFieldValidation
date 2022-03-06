@@ -11,6 +11,8 @@
 		4C4C3BDB27D458C9007E205B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C4C3BDA27D458C9007E205B /* ViewController.swift */; };
 		4C4C3BE027D458CB007E205B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4C4C3BDF27D458CB007E205B /* Assets.xcassets */; };
 		4C4C3BE327D458CB007E205B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C4C3BE127D458CB007E205B /* LaunchScreen.storyboard */; };
+		4C4C3BEB27D4A2E7007E205B /* CustomizedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C4C3BEA27D4A2E7007E205B /* CustomizedTextField.swift */; };
+		4C4C3BEF27D4A328007E205B /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C4C3BEE27D4A328007E205B /* String+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,6 +22,8 @@
 		4C4C3BDF27D458CB007E205B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4C4C3BE227D458CB007E205B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4C4C3BE427D458CB007E205B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4C4C3BEA27D4A2E7007E205B /* CustomizedTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomizedTextField.swift; sourceTree = "<group>"; };
+		4C4C3BEE27D4A328007E205B /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +58,8 @@
 			children = (
 				4C4C3BD627D458C9007E205B /* AppDelegate.swift */,
 				4C4C3BDA27D458C9007E205B /* ViewController.swift */,
+				4C4C3BEE27D4A328007E205B /* String+Extension.swift */,
+				4C4C3BEA27D4A2E7007E205B /* CustomizedTextField.swift */,
 				4C4C3BDF27D458CB007E205B /* Assets.xcassets */,
 				4C4C3BE127D458CB007E205B /* LaunchScreen.storyboard */,
 				4C4C3BE427D458CB007E205B /* Info.plist */,
@@ -132,6 +138,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				4C4C3BDB27D458C9007E205B /* ViewController.swift in Sources */,
+				4C4C3BEB27D4A2E7007E205B /* CustomizedTextField.swift in Sources */,
+				4C4C3BEF27D4A328007E205B /* String+Extension.swift in Sources */,
 				4C4C3BD727D458C9007E205B /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

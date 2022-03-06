@@ -7,36 +7,8 @@
 
 import UIKit
 
-class CustomizedTextField: UITextField {
-    public func setLeftTetView(
-        text: String,
-        textColor: UIColor? = nil,
-        textFont: UIFont? = nil,
-        isLeftLabelAccessible: Bool = true,
-        leftLabelAccessibilityText: String? = nil,
-        shouldAddingLeadingSpace: Bool = true
-    ) {
-        let textFieldView = UILabel(frame: CGRect())
-        textFieldView.text = String(format: "%@%@", shouldAddingLeadingSpace ? "   ": "", text)
-        textFieldView.font = textFont ?? UIFont.systemFont(ofSize: 17)
-        textFieldView.textAlignment = .left
-        textFieldView.textColor = .red
-        textFieldView.sizeToFit()
-        textFieldView.accessibilityLabel = leftLabelAccessibilityText ?? "\(text) Text Field".localized
-        textFieldView.isAccessibilityElement = isLeftLabelAccessible
-        self.leftView = textFieldView
-        self.leftViewMode = .always
-    }
-}
-
-extension String {
-    var localized: String {
-        return  NSLocalizedString(self, comment: "")
-    }
-}
-
 class ViewController: UIViewController{
-    lazy var textfield: UITextField = {
+    lazy var originalTextfield: UITextField = {
         let textFieldFrame = CGRect(x: 20, y: 100, width: 300, height: 40)
         let textfield = UITextField(frame: textFieldFrame)
         textfield.placeholder = "Enter text here"
@@ -49,7 +21,6 @@ class ViewController: UIViewController{
         textfield.delegate = self
         return textfield
     }()
-    
     lazy var customizedtextfield: CustomizedTextField = {
         let textFieldFrame = CGRect(x: 20, y: 100, width: 300, height: 40)
         let textfield = CustomizedTextField(frame: textFieldFrame)
@@ -64,30 +35,58 @@ class ViewController: UIViewController{
         textfield.setLeftTetView(text: "Customized text")
         return textfield
     }()
+    let errorTextForNormalTextField = UILabel()
+    let errorTextForCustomizedTextField = UILabel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .blue
         style()
         layout()
+        resetForm()
     }
     
+    func resetForm() {
+        originalTextfield.text = ""
+        customizedtextfield.text = ""
+        
+        errorTextForNormalTextField.isHidden = false
+        errorTextForCustomizedTextField.isHidden = false
+        
+        errorTextForNormalTextField.text = "Required"
+        errorTextForCustomizedTextField.text = "Required"
+    }
     func style() {
-        textfield.translatesAutoresizingMaskIntoConstraints = false
+        originalTextfield.translatesAutoresizingMaskIntoConstraints = false
         customizedtextfield.translatesAutoresizingMaskIntoConstraints = false
+        errorTextForNormalTextField.translatesAutoresizingMaskIntoConstraints = false
+        errorTextForCustomizedTextField.translatesAutoresizingMaskIntoConstraints = false
     }
     
     func layout() {
-        self.view.addSubview(textfield)
+        self.view.addSubview(originalTextfield)
         self.view.addSubview(customizedtextfield)
+        self.view.addSubview(errorTextForNormalTextField)
+        self.view.addSubview(errorTextForCustomizedTextField)
+        
         NSLayoutConstraint.activate([
-            textfield.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            textfield.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            textfield.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            textfield.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            customizedtextfield.topAnchor.constraint(equalTo: textfield.bottomAnchor, constant: 20),
-            customizedtextfield.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            customizedtextfield.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            originalTextfield.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
+            originalTextfield.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor),
+            originalTextfield.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
+            originalTextfield.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20),
+           
+            errorTextForNormalTextField.topAnchor.constraint(equalTo: originalTextfield.safeAreaLayoutGuide.bottomAnchor, constant: 20),
+            errorTextForNormalTextField.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
+            errorTextForNormalTextField.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20),
+            
+            customizedtextfield.topAnchor.constraint(equalTo: errorTextForNormalTextField.safeAreaLayoutGuide.bottomAnchor, constant: 20),
+            customizedtextfield.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
+            customizedtextfield.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20),
+
+            errorTextForCustomizedTextField.topAnchor.constraint(equalTo: customizedtextfield.bottomAnchor, constant: 20),
+            errorTextForCustomizedTextField.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
+            errorTextForCustomizedTextField.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20)
+            
         ])
     }
 }
@@ -122,7 +121,36 @@ extension ViewController: UITextFieldDelegate {
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         // return NO to not change text
-        print("While entering the characters this method gets called")
+        //print("While entering the characters this method gets called")
+        let isValidTextField = isValidTextField(existingText: textField, newText: string)
+        if !isValidTextField {
+            errorTextForNormalTextField.text = "This is an error"
+        } else {
+            errorTextForNormalTextField.text = ""
+        }
+        return true
+    }
+    
+    func isValidTextField(existingText: UITextField, newText: String) -> Bool {
+        let specialCharacters = "!~`@#$%^&*-+();:={}[],.<>?\\/\"\'"
+        var searchText = existingText.text! + newText
+        
+        let characterSet = CharacterSet(charactersIn: specialCharacters)
+        
+        if newText == "" {
+            searchText.removeLast()
+        }
+        
+        if (newText.rangeOfCharacter(from: characterSet) != nil) {
+            print("matched special characters")
+            self.view.backgroundColor = .red
+            existingText.textColor = .black
+            return false
+        } else if (searchText.rangeOfCharacter(from: characterSet) == nil) {
+            self.view.backgroundColor = .green
+            existingText.textColor = .black
+            return true
+        }
         return true
     }
     
@@ -134,7 +162,7 @@ extension ViewController: UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         // called when 'return' key pressed. return NO to ignore.
-        print("TextField should return method called")
+        //print("TextField should return method called")
         // may be useful: textField.resignFirstResponder()
         return true
     }
