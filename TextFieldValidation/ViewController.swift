@@ -9,8 +9,8 @@ import UIKit
 
 class ViewController: UIViewController{
     lazy var originalTextfield: UITextField = {
-        let textFieldFrame = CGRect(x: 20, y: 100, width: 300, height: 40)
-        let textfield = UITextField(frame: textFieldFrame)
+        // let textFieldFrame = CGRect(x: 20, y: 100, width: 300, height: 40)
+        let textfield = UITextField()
         textfield.placeholder = "Enter text here"
         textfield.borderStyle = .roundedRect
         textfield.autocorrectionType = .no
@@ -22,8 +22,8 @@ class ViewController: UIViewController{
         return textfield
     }()
     lazy var customizedtextfield: CustomizedTextField = {
-        let textFieldFrame = CGRect(x: 20, y: 100, width: 300, height: 40)
-        let textfield = CustomizedTextField(frame: textFieldFrame)
+       // let textFieldFrame = CGRect(x: 20, y: 100, width: 300, height: 40)
+        let textfield = CustomizedTextField()//CustomizedTextField(frame: textFieldFrame)
         textfield.placeholder = "Enter text here"
         textfield.borderStyle = .roundedRect
         textfield.autocorrectionType = .no
@@ -82,6 +82,7 @@ class ViewController: UIViewController{
             customizedtextfield.topAnchor.constraint(equalTo: errorTextForNormalTextField.safeAreaLayoutGuide.bottomAnchor, constant: 20),
             customizedtextfield.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
             customizedtextfield.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20),
+            // If needed, we can add height constraint for the textfield here
 
             errorTextForCustomizedTextField.topAnchor.constraint(equalTo: customizedtextfield.bottomAnchor, constant: 20),
             errorTextForCustomizedTextField.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
