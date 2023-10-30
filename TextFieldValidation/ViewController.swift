@@ -6,8 +6,9 @@
 //
 
 import UIKit
+import SwiftUI
 
-class ViewController: UIViewController{
+class ViewController: UIViewController {
   private enum Constants {
     static let lineSpacer: CGFloat = 20
   }
@@ -172,3 +173,21 @@ extension ViewController: UITextFieldDelegate {
   }
 }
 
+// MARK: - Preview without navigation bar items from UIKit UIViewController
+@available(iOS 13, *)
+struct BaseUIView: UIViewControllerRepresentable {
+    func makeUIViewController(context: Context) -> ViewController {
+        /// Protocol `UIViewControllerRepresentable` only allows us to load `UIKit view` of `UIViewController`,
+        /// but not the navigation bar items from the `UINavigationController`
+        ViewController()
+    }
+    
+    func updateUIViewController(_ uiViewController: ViewController, context: Context) {}
+}
+
+@available(iOS 13, *)
+struct PreviewBaseUIView: PreviewProvider {
+    static var previews: some View {
+        BaseUIView()
+    }
+}
