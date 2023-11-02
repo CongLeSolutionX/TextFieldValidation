@@ -17,33 +17,37 @@ class MyTableViewController: UITableViewController {
         
         viewModel = TextViewViewModel() // Initialize the viewModel
         
-        // Register a UITableViewCell with a UITextView
-        self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "tableCell")
+        // Register a UITableViewCell and CongBaseTableViewCell
+        self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "UITableViewCell")
+        self.tableView.register(CongBaseTableViewCell.self, forCellReuseIdentifier: "CongBaseTableViewCell")
     }
     
     // UITableViewDataSource function
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1 // assuming we have 1 cell
+        return 2
     }
-    
     // UITableViewDataSource function
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = self.tableView.dequeueReusableCell(withIdentifier: "tableCell", for: indexPath)
-        cell.backgroundColor = .green
-        
-        // Add a UITextView if it doesn't exist
-        if cell.viewWithTag(100) == nil {
-            let textView = UITextView(frame: CGRect(x: 0, y: 0, width: cell.contentView.frame.width, height: cell.contentView.frame.height))
-            textView.tag = 100
-            textView.delegate = self
+        if indexPath.row == 0 { // Use UITableViewCell for the first row
+            let cell = self.tableView.dequeueReusableCell(withIdentifier: "UITableViewCell", for: indexPath)
+            cell.backgroundColor = .green
             
-            textView.backgroundColor = .yellow
-            
-            
-            cell.contentView.addSubview(textView)
+            // Add a UITextView if it doesn't exist
+            if cell.viewWithTag(100) == nil {
+                let textView = UITextView(frame: CGRect(x: 0, y: 0, width: cell.contentView.frame.width, height: cell.contentView.frame.height))
+                textView.tag = 100
+                textView.delegate = self
+                
+                textView.backgroundColor = .yellow
+                
+                
+                cell.contentView.addSubview(textView)
+            }
+            return cell
+        } else { // Use CongBaseTableViewCell for the second row
+            let cell = self.tableView.dequeueReusableCell(withIdentifier: "CongBaseTableViewCell", for: indexPath)
+            return cell
         }
-        
-        return cell
     }
 }
 

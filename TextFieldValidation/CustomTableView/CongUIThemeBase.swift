@@ -8,20 +8,6 @@
 import Foundation
 import UIKit
 
-class CongUIThemeLight: CongUIThemeBase {
-    required public init() {
-        super.init()
-        // define the value/key for colorNameDictionary here
-    }
-}
-
-class CongUIThemeDark: CongUIThemeBase {
-    required public init() {
-        super.init()
-        // define the value/key for colorNameDictionary here
-    }
-}
-
 
 @objcMembers
 open class CongUIThemeBase: NSObject {

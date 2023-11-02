@@ -21,6 +21,8 @@
 		4CFAAAE62AF363BA0002EBD6 /* CongUIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CFAAAE52AF363BA0002EBD6 /* CongUIColor.swift */; };
 		4CFAAAE82AF37E850002EBD6 /* CongUIFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CFAAAE72AF37E850002EBD6 /* CongUIFont.swift */; };
 		4CFAAAEA2AF386C10002EBD6 /* ReusableInitStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CFAAAE92AF386C10002EBD6 /* ReusableInitStyle.swift */; };
+		4CFAAAEC2AF3919F0002EBD6 /* CongUIThemeLight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CFAAAEB2AF3919F0002EBD6 /* CongUIThemeLight.swift */; };
+		4CFAAAEE2AF391BD0002EBD6 /* CongUIThemeDark.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CFAAAED2AF391BD0002EBD6 /* CongUIThemeDark.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +42,8 @@
 		4CFAAAE52AF363BA0002EBD6 /* CongUIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CongUIColor.swift; sourceTree = "<group>"; };
 		4CFAAAE72AF37E850002EBD6 /* CongUIFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CongUIFont.swift; sourceTree = "<group>"; };
 		4CFAAAE92AF386C10002EBD6 /* ReusableInitStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableInitStyle.swift; sourceTree = "<group>"; };
+		4CFAAAEB2AF3919F0002EBD6 /* CongUIThemeLight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CongUIThemeLight.swift; sourceTree = "<group>"; };
+		4CFAAAED2AF391BD0002EBD6 /* CongUIThemeDark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CongUIThemeDark.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,8 +97,10 @@
 				4CFAAADC2AF328B20002EBD6 /* CongBaseTableViewCell.swift */,
 				4CFAAAE72AF37E850002EBD6 /* CongUIFont.swift */,
 				4CFAAAE32AF3367D0002EBD6 /* ConstraintHelper.swift */,
-				4CFAAAE12AF332500002EBD6 /* CongUIThemeBase.swift */,
 				4CFAAAE52AF363BA0002EBD6 /* CongUIColor.swift */,
+				4CFAAAE12AF332500002EBD6 /* CongUIThemeBase.swift */,
+				4CFAAAEB2AF3919F0002EBD6 /* CongUIThemeLight.swift */,
+				4CFAAAED2AF391BD0002EBD6 /* CongUIThemeDark.swift */,
 			);
 			path = CustomTableView;
 			sourceTree = "<group>";
@@ -181,6 +187,8 @@
 				4CFAAADD2AF328B20002EBD6 /* CongBaseTableViewCell.swift in Sources */,
 				4C4C3BD727D458C9007E205B /* AppDelegate.swift in Sources */,
 				4CFAAAE22AF332500002EBD6 /* CongUIThemeBase.swift in Sources */,
+				4CFAAAEE2AF391BD0002EBD6 /* CongUIThemeDark.swift in Sources */,
+				4CFAAAEC2AF3919F0002EBD6 /* CongUIThemeLight.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
