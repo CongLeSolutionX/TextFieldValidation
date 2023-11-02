@@ -1,5 +1,5 @@
 //
-//  CongBaseTableViewCell.swift
+//  BaseTableViewCell.swift
 //  TextFieldValidation
 //
 //  Created by CONG LE on 11/1/23.
@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-open class CongBaseTableViewCell: UITableViewCell, ThemeableElement {
+open class BaseTableViewCell: UITableViewCell, ThemeableElement {
     
     public var theme: CongUIThemeBase? = .currentTheme
     public var helpButtonBlock: ((_ sender: UIButton?) -> Void)?
@@ -178,7 +178,7 @@ open class CongBaseTableViewCell: UITableViewCell, ThemeableElement {
 }
 
 // MARK: - ReusableInitStyle
-extension CongBaseTableViewCell: ReusableInitStyle {
+extension BaseTableViewCell: ReusableInitStyle {
     public func set(textLabelValue: String?, detailTextLabelValue: String?) {
         self.textLabel?.text = textLabelValue ?? self.textLabel?.text
         self.detailTextLabel?.text = detailTextLabelValue ?? self.detailTextLabel?.text
@@ -199,7 +199,7 @@ extension CongBaseTableViewCell: ReusableInitStyle {
 }
 
 // MARK: - Helper functions
-extension CongBaseTableViewCell {
+extension BaseTableViewCell {
     public func addHelpAccessoryView(helpIcon: UIImage? = #imageLiteral(resourceName: "helpicon"), buttonClick: ((_ sender: UIButton?) -> Void)?) {
 
         guard let helpIcon = helpIcon else { return }

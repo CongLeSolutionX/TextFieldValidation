@@ -19,7 +19,7 @@ class MyTableViewController: UITableViewController {
         
         // Register a UITableViewCell and CongBaseTableViewCell
         self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "UITableViewCell")
-        self.tableView.register(CongBaseTableViewCell.self, forCellReuseIdentifier: "CongBaseTableViewCell")
+        self.tableView.register(BaseTableViewCell.self, forCellReuseIdentifier: "CongBaseTableViewCell")
     }
     
     // UITableViewDataSource function
@@ -34,12 +34,17 @@ class MyTableViewController: UITableViewController {
             
             // Add a UITextView if it doesn't exist
             if cell.viewWithTag(100) == nil {
-                let textView = UITextView(frame: CGRect(x: 0, y: 0, width: cell.contentView.frame.width, height: cell.contentView.frame.height))
+                let textView = UITextView(
+                    frame: CGRect(
+                        x: 0,
+                        y: 0,
+                        width: cell.contentView.frame.width,
+                        height: cell.contentView.frame.height
+                    )
+                )
                 textView.tag = 100
                 textView.delegate = self
-                
                 textView.backgroundColor = .yellow
-                
                 
                 cell.contentView.addSubview(textView)
             }
