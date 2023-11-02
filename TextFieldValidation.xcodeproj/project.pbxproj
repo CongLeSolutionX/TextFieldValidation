@@ -20,6 +20,7 @@
 		4CFAAAE42AF3367D0002EBD6 /* ConstraintHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CFAAAE32AF3367D0002EBD6 /* ConstraintHelper.swift */; };
 		4CFAAAE62AF363BA0002EBD6 /* CongUIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CFAAAE52AF363BA0002EBD6 /* CongUIColor.swift */; };
 		4CFAAAE82AF37E850002EBD6 /* CongUIFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CFAAAE72AF37E850002EBD6 /* CongUIFont.swift */; };
+		4CFAAAEA2AF386C10002EBD6 /* ReusableInitStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CFAAAE92AF386C10002EBD6 /* ReusableInitStyle.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 		4CFAAAE32AF3367D0002EBD6 /* ConstraintHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstraintHelper.swift; sourceTree = "<group>"; };
 		4CFAAAE52AF363BA0002EBD6 /* CongUIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CongUIColor.swift; sourceTree = "<group>"; };
 		4CFAAAE72AF37E850002EBD6 /* CongUIFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CongUIFont.swift; sourceTree = "<group>"; };
+		4CFAAAE92AF386C10002EBD6 /* ReusableInitStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableInitStyle.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,10 +88,11 @@
 		4CFAAAE02AF32A670002EBD6 /* CustomTableView */ = {
 			isa = PBXGroup;
 			children = (
+				4CFAAAE92AF386C10002EBD6 /* ReusableInitStyle.swift */,
+				4CFAAADE2AF329C40002EBD6 /* ThemeableElement.swift */,
 				4CFAAADC2AF328B20002EBD6 /* BaseTableViewCell.swift */,
 				4CFAAAE72AF37E850002EBD6 /* CongUIFont.swift */,
 				4CFAAAE32AF3367D0002EBD6 /* ConstraintHelper.swift */,
-				4CFAAADE2AF329C40002EBD6 /* ThemeableElement.swift */,
 				4CFAAAE12AF332500002EBD6 /* CongUIThemeBase.swift */,
 				4CFAAAE52AF363BA0002EBD6 /* CongUIColor.swift */,
 			);
@@ -172,6 +175,7 @@
 				4C4C3BEB27D4A2E7007E205B /* CustomizedTextField.swift in Sources */,
 				4C4C3BEF27D4A328007E205B /* String+Extension.swift in Sources */,
 				4CFAAADF2AF329C40002EBD6 /* ThemeableElement.swift in Sources */,
+				4CFAAAEA2AF386C10002EBD6 /* ReusableInitStyle.swift in Sources */,
 				4CFAAAE82AF37E850002EBD6 /* CongUIFont.swift in Sources */,
 				4CFAAADB2AF2F94A0002EBD6 /* MyTableViewController.swift in Sources */,
 				4CFAAADD2AF328B20002EBD6 /* BaseTableViewCell.swift in Sources */,

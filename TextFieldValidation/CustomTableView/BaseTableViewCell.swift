@@ -8,14 +8,6 @@
 import Foundation
 import UIKit
 
-public protocol ReusableInitStyle: UITableViewCell {
-    static var reuseIdentifier: String { get }
-    func commonInit()
-    func set(textLabelValue: String?, detailTextLabelValue: String?)
-    func set(attributedTextLabelValue: NSAttributedString?, attributedDetailTextLabelValue: NSAttributedString?)
-    func set(textLabelAccessibilityValue: String?, detailTextAccessibilityValue: String?)
-}
-
 open class CongBaseTableViewCell: UITableViewCell, ThemeableElement {
     
     public var theme: CongUIThemeBase? = .currentTheme

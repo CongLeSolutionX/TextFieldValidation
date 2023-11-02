@@ -10,42 +10,27 @@ import UIKit
 
 /// Doc: https://developer.apple.com/design/human-interface-guidelines/typography
 public class CongUIFont: UIFont {
+    
+    static private let fontStyles: [String: UIFont] = [
+        "Headline": CongUIFont.headline,
+        "Subheadline": CongUIFont.subheadline,
+        "Subheadline-Bold": CongUIFont.subheadline.bold(),
+        "Footnote-Bold": CongUIFont.footnote.bold(),
+        "Body": CongUIFont.body,
+        "Title": CongUIFont.title1,
+        "Title2": CongUIFont.title2,
+        "Title3": CongUIFont.title3,
+        "Title3-Bold": CongUIFont.title3.bold(),
+        "HugeBody": CongUIFont.body.withSize(25),
+        "HugeHeadline": CongUIFont.headline.withSize(40),
+        "HugeTitle": CongUIFont.title1.withSize(100),
+        "HugeTitle2": CongUIFont.title2.withSize(100),
+        "HugeTitle3": CongUIFont.title3.withSize(100)
+    ]
+    
     static public func fontFrom(name nameStr: String) -> UIFont {
-        var font = CongUIFont.body
-        switch nameStr {
-        case "Headline":
-            font = CongUIFont.headline
-        case "Subheadline":
-            font = CongUIFont.subheadline
-        case "Subheadline-Bold":
-            font = CongUIFont.subheadline.bold()
-        case "Footnote-Bold":
-            font = CongUIFont.footnote.bold()
-        case "Body":
-            font = CongUIFont.body
-        case "Title":
-            font = CongUIFont.title1
-        case "Title2":
-            font = CongUIFont.title2
-        case "Title3":
-            font = CongUIFont.title3
-        case "Title3-Bold":
-            font = CongUIFont.title3.bold()
-        case "HugeBody":
-            font = CongUIFont.body.withSize(25)
-        case "HugeHeadline":
-            font = CongUIFont.headline.withSize(40)
-        case "HugeTitle":
-            font = CongUIFont.title1.withSize(100)
-        case "HugeTitle2":
-            font = CongUIFont.title2.withSize(100)
-        case "HugeTitle3":
-            font = CongUIFont.title3.withSize(100)
-        default:
-            break
-        }
-        return font
-    }
+         return fontStyles[nameStr] ?? CongUIFont.body
+     }
 
     public enum MaxPointSizes: CGFloat {
         case cardNumberFont = 31
