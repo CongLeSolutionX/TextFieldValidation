@@ -20,7 +20,7 @@ class MyTableViewController: UITableViewController {
         // Register a UITableViewCell with a UITextView
         self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "tableCell")
     }
- 
+    
     // UITableViewDataSource function
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1 // assuming we have 1 cell

@@ -72,7 +72,28 @@ class ViewController: UIViewController {
     self.view.addSubview(customizedtextfield)
     self.view.addSubview(errorTextForNormalTextField)
     self.view.addSubview(errorTextForCustomizedTextField)
-
+      
+      let closeButton = UIButton(type: .close)
+      
+      let padding: CGFloat = 20
+      let rightView = UIView(frame: CGRect(x: 0, y: 0, width: closeButton.frame.width + padding, height: closeButton.frame.height))
+      rightView.backgroundColor = .red
+      rightView.addSubview(closeButton)
+      closeButton.translatesAutoresizingMaskIntoConstraints = true
+     
+      NSLayoutConstraint.activate([
+        closeButton.topAnchor.constraint(equalTo: rightView.topAnchor),
+        closeButton.bottomAnchor.constraint(equalTo: rightView.bottomAnchor),
+        closeButton.leadingAnchor.constraint(equalTo: rightView.leadingAnchor),
+        closeButton.trailingAnchor.constraint(equalTo: rightView.trailingAnchor, constant: -padding)
+      ])
+      
+      originalTextfield.rightView = rightView
+      originalTextfield.rightViewMode = .always
+      
+      originalTextfield.setNeedsLayout()
+      originalTextfield.layoutIfNeeded()
+      
     NSLayoutConstraint.activate([
       originalTextfield.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
       originalTextfield.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor),
