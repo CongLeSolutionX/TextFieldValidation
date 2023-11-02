@@ -14,7 +14,7 @@
 		4C4C3BEB27D4A2E7007E205B /* CustomizedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C4C3BEA27D4A2E7007E205B /* CustomizedTextField.swift */; };
 		4C4C3BEF27D4A328007E205B /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C4C3BEE27D4A328007E205B /* String+Extension.swift */; };
 		4CFAAADB2AF2F94A0002EBD6 /* MyTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CFAAADA2AF2F94A0002EBD6 /* MyTableViewController.swift */; };
-		4CFAAADD2AF328B20002EBD6 /* BaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CFAAADC2AF328B20002EBD6 /* BaseTableViewCell.swift */; };
+		4CFAAADD2AF328B20002EBD6 /* CongBaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CFAAADC2AF328B20002EBD6 /* CongBaseTableViewCell.swift */; };
 		4CFAAADF2AF329C40002EBD6 /* ThemeableElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CFAAADE2AF329C40002EBD6 /* ThemeableElement.swift */; };
 		4CFAAAE22AF332500002EBD6 /* CongUIThemeBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CFAAAE12AF332500002EBD6 /* CongUIThemeBase.swift */; };
 		4CFAAAE42AF3367D0002EBD6 /* ConstraintHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CFAAAE32AF3367D0002EBD6 /* ConstraintHelper.swift */; };
@@ -33,7 +33,7 @@
 		4C4C3BEA27D4A2E7007E205B /* CustomizedTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomizedTextField.swift; sourceTree = "<group>"; };
 		4C4C3BEE27D4A328007E205B /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		4CFAAADA2AF2F94A0002EBD6 /* MyTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTableViewController.swift; sourceTree = "<group>"; };
-		4CFAAADC2AF328B20002EBD6 /* BaseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewCell.swift; sourceTree = "<group>"; };
+		4CFAAADC2AF328B20002EBD6 /* CongBaseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CongBaseTableViewCell.swift; sourceTree = "<group>"; };
 		4CFAAADE2AF329C40002EBD6 /* ThemeableElement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeableElement.swift; sourceTree = "<group>"; };
 		4CFAAAE12AF332500002EBD6 /* CongUIThemeBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CongUIThemeBase.swift; sourceTree = "<group>"; };
 		4CFAAAE32AF3367D0002EBD6 /* ConstraintHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstraintHelper.swift; sourceTree = "<group>"; };
@@ -90,7 +90,7 @@
 			children = (
 				4CFAAAE92AF386C10002EBD6 /* ReusableInitStyle.swift */,
 				4CFAAADE2AF329C40002EBD6 /* ThemeableElement.swift */,
-				4CFAAADC2AF328B20002EBD6 /* BaseTableViewCell.swift */,
+				4CFAAADC2AF328B20002EBD6 /* CongBaseTableViewCell.swift */,
 				4CFAAAE72AF37E850002EBD6 /* CongUIFont.swift */,
 				4CFAAAE32AF3367D0002EBD6 /* ConstraintHelper.swift */,
 				4CFAAAE12AF332500002EBD6 /* CongUIThemeBase.swift */,
@@ -178,7 +178,7 @@
 				4CFAAAEA2AF386C10002EBD6 /* ReusableInitStyle.swift in Sources */,
 				4CFAAAE82AF37E850002EBD6 /* CongUIFont.swift in Sources */,
 				4CFAAADB2AF2F94A0002EBD6 /* MyTableViewController.swift in Sources */,
-				4CFAAADD2AF328B20002EBD6 /* BaseTableViewCell.swift in Sources */,
+				4CFAAADD2AF328B20002EBD6 /* CongBaseTableViewCell.swift in Sources */,
 				4C4C3BD727D458C9007E205B /* AppDelegate.swift in Sources */,
 				4CFAAAE22AF332500002EBD6 /* CongUIThemeBase.swift in Sources */,
 			);
