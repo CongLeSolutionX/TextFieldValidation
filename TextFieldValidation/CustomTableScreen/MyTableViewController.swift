@@ -35,27 +35,41 @@ class MyTableViewController: UITableViewController {
         if indexPath.row == 0 { // Assign UITextView to an UITableViewCell for the first row
             // Add a UITextView if it doesn't exist
             if cell.viewWithTag(100) == nil {
-                let textView = UITextView()
-                textView.translatesAutoresizingMaskIntoConstraints = false // Use Auto Layout
+                let textField = UITextField()
+                textField.translatesAutoresizingMaskIntoConstraints = false // Use Auto Layout
+                textField.placeholder = "Original text field"
+                textField.tag = 100
+                textField.delegate = self
+                textField.backgroundColor = .yellow
                 
-                textView.tag = 100
-                textView.delegate = self
-                textView.backgroundColor = .yellow
-                
-                cell.contentView.addSubview(textView)
+                cell.contentView.addSubview(textField)
                 cell.backgroundColor = .green
                 
                 NSLayoutConstraint.activate([
-                    textView.leadingAnchor.constraint(equalTo: cell.contentView.leadingAnchor),
-                    textView.trailingAnchor.constraint(equalTo: cell.contentView.trailingAnchor),
-                    textView.topAnchor.constraint(equalTo: cell.contentView.topAnchor),
-                    textView.bottomAnchor.constraint(equalTo: cell.contentView.bottomAnchor)
+                    textField.leadingAnchor.constraint(equalTo: cell.contentView.leadingAnchor),
+                    textField.trailingAnchor.constraint(equalTo: cell.contentView.trailingAnchor),
+                    textField.topAnchor.constraint(equalTo: cell.contentView.topAnchor),
+                    textField.bottomAnchor.constraint(equalTo: cell.contentView.bottomAnchor)
                 ])
-                
-                // To allow the user to interact with the textField, you need to make sure that cell selection doesn't interfere
-                cell.selectionStyle = .none
             }
-        } else if indexPath.row == 1 { // Assign customized text field to an UITableViewCell for the second rows
+        } else if indexPath.row == 1 { // assign UITextView to anUITableViewCell for the 2nd row
+            let textView = UITextView()
+            textView.translatesAutoresizingMaskIntoConstraints = false // Use Auto Layout
+            textView.tag = 101
+            textView.delegate = self
+            textView.backgroundColor = .magenta
+            textView.text = "Original Text View"
+            
+            cell.contentView.addSubview(textView)
+            cell.backgroundColor = .green
+            
+            NSLayoutConstraint.activate([
+                textView.leadingAnchor.constraint(equalTo: cell.contentView.leadingAnchor),
+                textView.trailingAnchor.constraint(equalTo: cell.contentView.trailingAnchor),
+                textView.topAnchor.constraint(equalTo: cell.contentView.topAnchor),
+                textView.bottomAnchor.constraint(equalTo: cell.contentView.bottomAnchor)
+            ])
+        } else if indexPath.row == 2 { // Assign customized text field to an UITableViewCell for the 3rd row
             let congTextField = CongUITextField()
             congTextField.backgroundColor = .blue
             congTextField.translatesAutoresizingMaskIntoConstraints = false
@@ -69,10 +83,6 @@ class MyTableViewController: UITableViewController {
                 congTextField.trailingAnchor.constraint(equalTo: cell.contentView.trailingAnchor),
                 congTextField.topAnchor.constraint(equalTo: cell.contentView.topAnchor),
                 congTextField.bottomAnchor.constraint(equalTo: cell.contentView.bottomAnchor)
-//                congTextField.leadingAnchor.constraint(equalTo: cell.contentView.leadingAnchor, constant: 16),
-//                congTextField.trailingAnchor.constraint(equalTo: cell.contentView.trailingAnchor, constant: -16),
-//                congTextField.topAnchor.constraint(equalTo: cell.contentView.topAnchor, constant: 8),
-//                congTextField.bottomAnchor.constraint(equalTo: cell.contentView.bottomAnchor, constant: -8),
             ])
         }
         return cell
@@ -91,7 +101,13 @@ class TextViewViewModel {
 }
 
 // MARK: - UITextViewDelegate
+
 extension MyTableViewController: UITextViewDelegate {
+    
+}
+
+// MARK: - UITextViewDelegate
+extension MyTableViewController: UITextFieldDelegate {
   
 }
 
