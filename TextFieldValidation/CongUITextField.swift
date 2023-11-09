@@ -41,24 +41,21 @@ open class CongUITextField: UITextField, ThemeableElement {
     }
     
     override open func textRect(forBounds bounds: CGRect) -> CGRect {
-        if self.shouldAddPaddingToClearButton {
+        // Common calculations
+        let clearButtonWidth = clearButtonMode != .never ? clearButtonRect(forBounds: bounds).width : 0
+        let padding: CGFloat = 5 // Padding from text to clearButton
+
+        if shouldAddPaddingToClearButton && clearButtonMode != .never && isEditing {
+            // If editing and padding is needed, adjust the text rect
             var textRect = super.textRect(forBounds: bounds)
-            let clearButtonWidth = self.clearButtonRect(forBounds: bounds).width
-            if clearButtonMode != .never && self.isEditing {
-                // Adjust the width to account for the clear button width and padding
-                textRect.size.width = clearButtonRect(forBounds: bounds).minX - textRect.origin.x - 5 // 5 is the padding from text to clearButton
-            }
+            textRect.size.width -= (clearButtonWidth + padding)
             return textRect
         } else {
-            // We have to give padding between the text and the clear button, if the clear button is present.
-            let clearButtonPadding: CGFloat = self.clearButtonMode != .never ? self.layoutMargins.left : 0
-            let originX: CGFloat = self.layoutMargins.left + self.leftViewRect(forBounds: bounds).size.width
-            let width = bounds.size.width - originX - self.clearButtonRect(forBounds: bounds).size.width - clearButtonPadding
-            return CGRect(
-                x: originX,
-                y: 0,
-                width: width, height: bounds.size.height
-            )
+            // The default case must respect both the leftView and clear button without additional padding
+            let leftViewWidth = leftViewRect(forBounds: bounds).size.width
+            let originX = layoutMargins.left + leftViewWidth
+            let width = bounds.size.width - originX - clearButtonWidth - (clearButtonWidth > 0 ? layoutMargins.right : 0)
+            return CGRect(x: originX, y: 0, width: width, height: bounds.size.height)
         }
     }
    
@@ -73,17 +70,19 @@ open class CongUITextField: UITextField, ThemeableElement {
     }
     
     override open func editingRect(forBounds bounds: CGRect) -> CGRect {
-        if self.shouldAddPaddingToClearButton {
-            var editingRect = super.editingRect(forBounds: bounds)
-            let clearButtonWidth = self.clearButtonRect(forBounds: bounds).width
-            if clearButtonMode != .never && self.isEditing {
-                // Adjust the width to account for the clear button width and padding
-                editingRect.size.width = clearButtonRect(forBounds: bounds).minX - editingRect.origin.x - 5 // 5 is the padding from text to clearButton
-            }
-            return editingRect
-        } else {
-            return textRect(forBounds: bounds)
+        let clearButtonWidth = self.clearButtonRect(forBounds: bounds).width
+        let padding: CGFloat = 5 // Padding from text to clearButton
+        
+        // Regardless of the padding flag, when not editing, use the same rect as textRect.
+        // This ensures consistency in appearance between the editing and non-editing states.
+        var editingRect = super.editingRect(forBounds: bounds)
+        
+        // When editing, consider the clear button width and padding only if shouldAddPaddingToClearButton is true.
+        if shouldAddPaddingToClearButton && clearButtonMode != .never && self.isEditing {
+            // Adjust the width to account for the clear button width and desired padding
+            editingRect.size.width -= (clearButtonWidth + padding)
         }
+        return editingRect
     }
     
     public func setLeftTextView(
