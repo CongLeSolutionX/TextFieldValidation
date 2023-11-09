@@ -15,29 +15,34 @@ class ViewController: UIViewController {
     
     lazy var originalTextField: UITextField = {
         // let textFieldFrame = CGRect(x: 20, y: 100, width: 300, height: 40)
-        let textfield = UITextField()
-        textfield.placeholder = "Original text field"
-        textfield.borderStyle = .roundedRect
-        textfield.autocorrectionType = .no
-        textfield.keyboardType = .default
-        textfield.returnKeyType = .done
-        textfield.clearButtonMode = .whileEditing
-        textfield.contentVerticalAlignment = .center
-        textfield.delegate = self
-        return textfield
+        let textField = UITextField()
+        textField.placeholder = "Original text field"
+        textField.borderStyle = .roundedRect
+        textField.autocorrectionType = .no
+        textField.keyboardType = .default
+        textField.returnKeyType = .done
+        textField.clearButtonMode = .whileEditing
+        textField.contentVerticalAlignment = .center
+        textField.delegate = self
+        textField.translatesAutoresizingMaskIntoConstraints = false
+        
+        textField.setNeedsLayout()
+        textField.layoutIfNeeded()
+        return textField
     }()
     
     lazy var textFieldWithRightImageView: CongUITextField = {
-        let textfield = CongUITextField()
-        textfield.placeholder = "UITextField with right view"
-        textfield.borderStyle = .roundedRect
-        textfield.autocorrectionType = .no
-        textfield.keyboardType = .default
-        textfield.returnKeyType = .done
-        textfield.clearButtonMode = .whileEditing
-        textfield.contentVerticalAlignment = .center
-        textfield.delegate = self
-       
+        let textField = CongUITextField()
+        textField.placeholder = "UITextField with right view"
+        textField.borderStyle = .roundedRect
+        textField.autocorrectionType = .no
+        textField.keyboardType = .default
+        textField.returnKeyType = .done
+        textField.clearButtonMode = .whileEditing
+        textField.contentVerticalAlignment = .center
+        textField.delegate = self
+        textField.translatesAutoresizingMaskIntoConstraints = false
+        
         let rightImageView = UIImageView()
         rightImageView.backgroundColor = .cyan
         rightImageView.image = UIImage(systemName: "house")
@@ -45,23 +50,24 @@ class ViewController: UIViewController {
         rightImageView.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
         
         
-        textfield.rightView = rightImageView
-        textfield.rightViewMode = .always
+        textField.rightView = rightImageView
+        textField.rightViewMode = .always
         
-        textfield.setLeftTextView(text: "Cong")
-        return textfield
+        textField.setLeftTextView(text: "Cong")
+        return textField
     }()
     lazy var customizedTextField: CustomizedTextField = {
         // let textFieldFrame = CGRect(x: 20, y: 100, width: 300, height: 40)
-        let textfield = CustomizedTextField()//CustomizedTextField(frame: textFieldFrame)
-        textfield.placeholder = "Enter text here"
-        textfield.borderStyle = .roundedRect
-        textfield.autocorrectionType = .no
-        textfield.keyboardType = .default
-        textfield.returnKeyType = .done
-        textfield.clearButtonMode = .whileEditing
-        textfield.contentVerticalAlignment = .center
-        textfield.delegate = self
+        let textField = CustomizedTextField()//CustomizedTextField(frame: textFieldFrame)
+        textField.placeholder = "Enter text here"
+        textField.borderStyle = .roundedRect
+        textField.autocorrectionType = .no
+        textField.keyboardType = .default
+        textField.returnKeyType = .done
+        textField.clearButtonMode = .whileEditing
+        textField.contentVerticalAlignment = .center
+        textField.delegate = self
+        textField.translatesAutoresizingMaskIntoConstraints = false
         
         let customCloseButton = UIButton(type: .close)
         
@@ -85,29 +91,31 @@ class ViewController: UIViewController {
             customCloseButton.trailingAnchor.constraint(equalTo: rightView.trailingAnchor, constant: -padding)
         ])
   
-        textfield.rightView = rightView
-        textfield.rightViewMode = .always
+        textField.rightView = rightView
+        textField.rightViewMode = .always
         
-        textfield.setLeftTextView(text: "Customized text")
-        return textfield
+        textField.setLeftTextView(text: "Customized text")
+        return textField
     }()
     
     lazy var customizedCongTextfield: CongUITextField = {
-        let textfield = CongUITextField()
-        textfield.placeholder = "Enter text here"
-        textfield.borderStyle = .roundedRect
-        textfield.autocorrectionType = .no
-        textfield.keyboardType = .default
-        textfield.returnKeyType = .done
-        textfield.clearButtonMode = .whileEditing
-        textfield.contentVerticalAlignment = .center
-        textfield.delegate = self
+        let textField = CongUITextField()
+        textField.placeholder = "Enter text here"
+        textField.borderStyle = .roundedRect
+        textField.autocorrectionType = .no
+        textField.keyboardType = .default
+        textField.returnKeyType = .done
+        textField.clearButtonMode = .whileEditing
+        textField.contentVerticalAlignment = .center
+        textField.delegate = self
+        textField.translatesAutoresizingMaskIntoConstraints = false
         
-        textfield.shouldAddPaddingToClearButton = true
+        textField.shouldAddPaddingToClearButton = true
 
-        textfield.setLeftTextView(text: "Cong")
-        return textfield
+        textField.setLeftTextView(text: "Cong")
+        return textField
     }()
+    
     let errorTextForNormalTextField = UILabel()
     let errorTextForCustomizedTextField = UILabel()
     
@@ -129,11 +137,8 @@ class ViewController: UIViewController {
         errorTextForNormalTextField.text = "Required"
         errorTextForCustomizedTextField.text = "Required"
     }
+    
     func style() {
-        originalTextField.translatesAutoresizingMaskIntoConstraints = false
-        customizedCongTextfield.translatesAutoresizingMaskIntoConstraints = false
-        textFieldWithRightImageView.translatesAutoresizingMaskIntoConstraints = false
-        customizedTextField.translatesAutoresizingMaskIntoConstraints = false
         errorTextForNormalTextField.translatesAutoresizingMaskIntoConstraints = false
         errorTextForCustomizedTextField.translatesAutoresizingMaskIntoConstraints = false
     }
