@@ -14,6 +14,7 @@ import UIKit
     public static override var black: CongUIColor { return self.color(#function) }
     public static override var white: CongUIColor { return self.color(#function) }
     public static override var darkText: CongUIColor { return self.color(#function) }
+    public static override var lightGray: CongUIColor { return self.color(#function) }
     
     public static var slate2: CongUIColor { return self.color(#function) }
     public static var blueSuedeShoes: CongUIColor { return self.color(#function) }
@@ -24,6 +25,7 @@ import UIKit
         "black": CongUIColor.congUIColor(fromUIColor: UIColor.black),
         "white": CongUIColor.congUIColor(fromUIColor: UIColor.white),
         "darkText": CongUIColor.congUIColor(fromUIColor: UIColor.darkText),
+        "lightGray": CongUIColor.congUIColor(fromUIColor: UIColor.lightGray),
         
         "slate2": CongUIColor(red: 221 / 255, green: 221 / 255, blue: 221 / 255, alpha: 1),
         "blueSuedeShoes": CongUIColor(red: 0 / 255, green: 113 / 255, blue: 196 / 255, alpha: 1),

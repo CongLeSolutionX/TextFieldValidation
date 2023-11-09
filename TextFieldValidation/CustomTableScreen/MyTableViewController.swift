@@ -8,51 +8,54 @@
 import SwiftUI
 
 class MyTableViewController: UITableViewController {
-    
-    var viewModel: TextViewViewModel?
+    var viewModel = TextViewViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .red
         
-        viewModel = TextViewViewModel() // Initialize the viewModel
+        // It is important to set an estimated row height for cells that contain dynamic content
+        self.tableView.rowHeight = UITableView.automaticDimension
+        self.tableView.estimatedRowHeight = 44.0
         
         // Register a UITableViewCell and CongBaseTableViewCell
         self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "UITableViewCell")
-        self.tableView.register(BaseTableViewCell.self, forCellReuseIdentifier: "CongBaseTableViewCell")
+        self.tableView.register(CustomTableViewCell.self, forCellReuseIdentifier: "CustomTableViewCell")
     }
     
     // UITableViewDataSource function
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+        return 10
     }
     // UITableViewDataSource function
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = self.tableView.dequeueReusableCell(withIdentifier: "UITableViewCell", for: indexPath)
+        
         if indexPath.row == 0 { // Use UITableViewCell for the first row
-            let cell = self.tableView.dequeueReusableCell(withIdentifier: "UITableViewCell", for: indexPath)
             cell.backgroundColor = .green
             
             // Add a UITextView if it doesn't exist
             if cell.viewWithTag(100) == nil {
-                let textView = UITextView(
-                    frame: CGRect(
-                        x: 0,
-                        y: 0,
-                        width: cell.contentView.frame.width,
-                        height: cell.contentView.frame.height
-                    )
-                )
+                let textView = UITextView()
+                textView.translatesAutoresizingMaskIntoConstraints = false // Use Auto Layout
                 textView.tag = 100
                 textView.delegate = self
                 textView.backgroundColor = .yellow
                 
                 cell.contentView.addSubview(textView)
+                
+                NSLayoutConstraint.activate([
+                    textView.leadingAnchor.constraint(equalTo: cell.contentView.leadingAnchor),
+                    textView.trailingAnchor.constraint(equalTo: cell.contentView.trailingAnchor),
+                    textView.topAnchor.constraint(equalTo: cell.contentView.topAnchor),
+                    textView.bottomAnchor.constraint(equalTo: cell.contentView.bottomAnchor)
+                ])
+                
+            // To allow the user to interact with the textField, you need to make sure that cell selection doesn't interfere
+            cell.selectionStyle = .none
             }
-            return cell
-        } else { // Use CongBaseTableViewCell for the second row
-            let cell = self.tableView.dequeueReusableCell(withIdentifier: "CongBaseTableViewCell", for: indexPath)
-            return cell
         }
+        return cell
     }
 }
 
@@ -69,9 +72,7 @@ class TextViewViewModel {
 
 // MARK: - UITextViewDelegate
 extension MyTableViewController: UITextViewDelegate {
-    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
-        return viewModel?.shouldChangeCharacters(in: range, replacementText: text) ?? true
-    }
+  
 }
 
 // MARK: - Preview without navigation bar items from UIKit UIViewController

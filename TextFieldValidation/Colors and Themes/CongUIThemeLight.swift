@@ -15,7 +15,9 @@ class CongUIThemeLight: CongUIThemeBase {
             "tableViewSeparatorColor": CongUIColor.slate2,
             "linkColor": CongUIColor.blueSuedeShoes,
             "labelDetailColor" : CongUIColor.badReligion,
-            "labelDefaultColor": CongUIColor.darkText
+            "labelDefaultColor": CongUIColor.darkText,
+            
+            "textFieldPlaceholderColor": CongUIColor.lightGray
         ]
     }
 }

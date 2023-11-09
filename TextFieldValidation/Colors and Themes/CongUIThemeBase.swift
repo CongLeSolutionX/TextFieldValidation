@@ -104,4 +104,11 @@ extension CongUIThemeBase {
     public var linkColor: CongUIColor { return self.color(#function) }
     public var labelDetailColor: CongUIColor { return self.color(#function) }
     public var labelDefaultColor: CongUIColor { return self.color(#function) }
+    
+    public var textFieldPlaceholderColor: CongUIColor { return self.color(#function)}
+}
+
+// MARK: - Non-color API
+extension CongUIThemeBase {
+    public var keyboardAppearance: UIKeyboardAppearance { return .default }
 }
