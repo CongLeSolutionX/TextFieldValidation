@@ -109,9 +109,7 @@ class ViewController: UIViewController {
         textField.contentVerticalAlignment = .center
         textField.delegate = self
         textField.translatesAutoresizingMaskIntoConstraints = false
-        
-        textField.shouldAddPaddingToClearButton = true
-
+  
         textField.setLeftTextView(text: "Cong")
         return textField
     }()

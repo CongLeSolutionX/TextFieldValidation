@@ -83,9 +83,7 @@
 			isa = PBXGroup;
 			children = (
 				4C4C3BD627D458C9007E205B /* AppDelegate.swift */,
-				4C4C3BEA27D4A2E7007E205B /* CustomizedTextField.swift */,
-				4CFAAAF32AF3BCCA0002EBD6 /* CongUITextField.swift */,
-				4C4C3BDA27D458C9007E205B /* ViewController.swift */,
+				4C6D0D652AFD20D200094EC2 /* ViewWithTextFields */,
 				4CFAAAE02AF32A670002EBD6 /* CustomTableScreen */,
 				4CFAAAEF2AF397D60002EBD6 /* Colors and Themes */,
 				4CFAAAF02AF398290002EBD6 /* Helper */,
@@ -94,6 +92,16 @@
 				4C4C3BE427D458CB007E205B /* Info.plist */,
 			);
 			path = TextFieldValidation;
+			sourceTree = "<group>";
+		};
+		4C6D0D652AFD20D200094EC2 /* ViewWithTextFields */ = {
+			isa = PBXGroup;
+			children = (
+				4C4C3BEA27D4A2E7007E205B /* CustomizedTextField.swift */,
+				4CFAAAF32AF3BCCA0002EBD6 /* CongUITextField.swift */,
+				4C4C3BDA27D458C9007E205B /* ViewController.swift */,
+			);
+			path = ViewWithTextFields;
 			sourceTree = "<group>";
 		};
 		4CFAAAE02AF32A670002EBD6 /* CustomTableScreen */ = {

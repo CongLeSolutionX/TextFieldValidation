@@ -12,8 +12,6 @@ open class CongUITextField: UITextField, ThemeableElement {
     public var theme: CongUIThemeBase? = .currentTheme
     var textFieldIdentifier: String = ""
     
-    open var shouldAddPaddingToClearButton: Bool = false
-    
     override open var placeholder: String? {
         didSet {
             self.reloadTheme()
@@ -41,36 +39,15 @@ open class CongUITextField: UITextField, ThemeableElement {
     }
     
     override open func textRect(forBounds bounds: CGRect) -> CGRect {
-        // Calculate the width of the left view
-        let leftViewWidth = self.leftViewRect(forBounds: bounds).size.width
-        // Get the starting x coordinate for the text field content from the left view and left margin
-        let originX = self.layoutMargins.left + leftViewWidth
-        
-        // Determine the clear button's width if it should be considered
-        let clearButtonWidth = self.clearButtonMode != .never ? clearButtonRect(forBounds: bounds).width : 0
-        // Calculate the needed padding if the clear button is visible
-        let padding: CGFloat = (clearButtonWidth > 0 && self.shouldAddPaddingToClearButton) ? 14 : 0
-        
-        // Calculate the updated width of the text field content by subtracting the left side widths (left view + margins)
-        // and the right side widths (clear button + padding + margins if clear button is visible)
-        let width = bounds.width - originX - clearButtonWidth - padding - (clearButtonWidth > 0 ? self.layoutMargins.right : 0)
-        
-        // Return the updated text rectangle
-        return CGRect(x: originX, y: 0, width: max(0, width), height: bounds.height)
-    }
-    
-    override open func clearButtonRect(forBounds bounds: CGRect) -> CGRect {
-        var clearButtonRect = super.clearButtonRect(forBounds: bounds)
-        if self.shouldAddPaddingToClearButton {
-            /// Move the button to the left by subtracting 12 points from the x-coordinate
-            /// This effectively adds 12 points padding to the right edge of the button
-            clearButtonRect.origin.x -= 12
-        }
-        return clearButtonRect
-    }
-    
-    open override func placeholderRect(forBounds bounds: CGRect) -> CGRect {
-        return self.textRect(forBounds: bounds)
+        // We have to give padding between the text and the clear button, if the clear button is present.
+        let clearButtonPadding: CGFloat = self.clearButtonMode != .never ? self.layoutMargins.left : 0
+        let originX: CGFloat = self.layoutMargins.left + self.leftViewRect(forBounds: bounds).size.width
+        let width = bounds.size.width - originX - self.clearButtonRect(forBounds: bounds).size.width - clearButtonPadding
+        return CGRect(
+            x: originX,
+            y: 0,
+            width: width, height: bounds.size.height
+        )
     }
     
     override open func editingRect(forBounds bounds: CGRect) -> CGRect {
@@ -106,5 +83,48 @@ open class CongUITextField: UITextField, ThemeableElement {
         self.textColor = self.theme?.labelDefaultColor
         self.attributedPlaceholder = NSAttributedString(string: self.placeholder ?? "", attributes:
                                                             [NSAttributedString.Key.foregroundColor: self.theme?.textFieldPlaceholderColor ?? UIColor.lightGray])
+    }
+}
+
+class LoginTextField: CongUITextField {
+    
+    open var shouldAddPaddingToClearButton: Bool = false
+    
+    override func commonInit() {
+        super.commonInit()
+    }
+    
+    override open func textRect(forBounds bounds: CGRect) -> CGRect {
+        // Calculate the width of the left view
+        let leftViewWidth = self.leftViewRect(forBounds: bounds).size.width
+        // Get the starting x coordinate for the text field content from the left view and left margin
+        let originX = self.layoutMargins.left + leftViewWidth
+        
+        // Determine the clear button's width if it should be considered
+        let clearButtonWidth = self.clearButtonMode != .never ? clearButtonRect(forBounds: bounds).width : 0
+        // Calculate the needed padding if the clear button is visible
+        let padding: CGFloat = (clearButtonWidth > 0 && self.shouldAddPaddingToClearButton) ? 14 : 0
+        
+        // Calculate the updated width of the text field content by subtracting the left side widths (left view + margins)
+        // and the right side widths (clear button + padding + margins if clear button is visible)
+        let width = bounds.width - originX - clearButtonWidth - padding - (clearButtonWidth > 0 ? self.layoutMargins.right : 0)
+        
+        // Return the updated text rectangle
+        return CGRect(x: originX, y: 0, width: max(0, width), height: bounds.height)
+    }
+    
+    
+    override open func clearButtonRect(forBounds bounds: CGRect) -> CGRect {
+        var clearButtonRect = super.clearButtonRect(forBounds: bounds)
+        if self.shouldAddPaddingToClearButton {
+            /// Move the button to the left by subtracting 12 points from the x-coordinate
+            /// This effectively adds 12 points padding to the right edge of the button
+            clearButtonRect.origin.x -= 12
+        }
+        return clearButtonRect
+    }
+    
+    override open func placeholderRect(forBounds bounds: CGRect) -> CGRect {
+        return self.textRect(forBounds: bounds)
     }
 }

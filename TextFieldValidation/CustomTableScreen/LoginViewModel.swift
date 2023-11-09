@@ -7,7 +7,7 @@
 
 import UIKit
 
-protocol LoginTextField {
+protocol LoginTextFieldable {
     static var placeholder: String { get }
     static var accessibilityIdentifier: String { get }
     static var leftTextViewText: String { get }
@@ -15,7 +15,7 @@ protocol LoginTextField {
 
 
 class LoginViewModel {
-    enum UsernameTextField: LoginTextField {
+    enum UsernameTextField: LoginTextFieldable {
         static var placeholder: String { "Enter Username"}
         static var accessibilityIdentifier: String { "usernameTextField" }
         static var leftTextViewText: String { "Username" }
@@ -23,7 +23,7 @@ class LoginViewModel {
     
     static func configureTextField(
         delegate: UITextFieldDelegate,
-        textFieldConstants: LoginTextField.Type,
+        textFieldConstants: LoginTextFieldable.Type,
         contentType: UITextContentType,
         returnKeyType: UIReturnKeyType,
         isSecureTextEntry: Bool
