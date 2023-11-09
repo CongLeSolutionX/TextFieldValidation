@@ -8,7 +8,7 @@
 import UIKit
 
 class CustomizedTextField: UITextField {
-    public func setLeftTetView(
+    public func setLeftTextView(
         text: String,
         textColor: UIColor? = nil,
         textFont: UIFont? = nil,

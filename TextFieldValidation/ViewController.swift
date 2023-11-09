@@ -12,7 +12,8 @@ class ViewController: UIViewController {
     private enum Constants {
         static let lineSpacer: CGFloat = 20
     }
-    lazy var originalTextfield: UITextField = {
+    
+    lazy var originalTextField: UITextField = {
         // let textFieldFrame = CGRect(x: 20, y: 100, width: 300, height: 40)
         let textfield = UITextField()
         textfield.placeholder = "Original text field"
@@ -25,7 +26,32 @@ class ViewController: UIViewController {
         textfield.delegate = self
         return textfield
     }()
-    lazy var customizedtextfield: CustomizedTextField = {
+    
+    lazy var textFieldWithRightImageView: CongUITextField = {
+        let textfield = CongUITextField()
+        textfield.placeholder = "UITextField with right view"
+        textfield.borderStyle = .roundedRect
+        textfield.autocorrectionType = .no
+        textfield.keyboardType = .default
+        textfield.returnKeyType = .done
+        textfield.clearButtonMode = .whileEditing
+        textfield.contentVerticalAlignment = .center
+        textfield.delegate = self
+       
+        let rightImageView = UIImageView()
+        rightImageView.backgroundColor = .cyan
+        rightImageView.image = UIImage(systemName: "house")
+        rightImageView.contentMode = .scaleAspectFit
+        rightImageView.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+        
+        
+        textfield.rightView = rightImageView
+        textfield.rightViewMode = .always
+        
+        textfield.setLeftTextView(text: "Cong")
+        return textfield
+    }()
+    lazy var customizedTextField: CustomizedTextField = {
         // let textFieldFrame = CGRect(x: 20, y: 100, width: 300, height: 40)
         let textfield = CustomizedTextField()//CustomizedTextField(frame: textFieldFrame)
         textfield.placeholder = "Enter text here"
@@ -58,21 +84,11 @@ class ViewController: UIViewController {
             customCloseButton.leadingAnchor.constraint(equalTo: rightView.leadingAnchor),
             customCloseButton.trailingAnchor.constraint(equalTo: rightView.trailingAnchor, constant: -padding)
         ])
+  
+        textfield.rightView = rightView
+        textfield.rightViewMode = .always
         
-// We can assign UIImageView the the right view
-//        textfield.rightView = rightView
-//        textfield.rightViewMode = .always
-//       
-//        let rightImageView = UIImageView()
-//        rightImageView.backgroundColor = .cyan
-//        rightImageView.image = UIImage(systemName: "house")
-//        rightImageView.contentMode = .scaleAspectFit
-//        rightImageView.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
-//        
-//        textfield.rightView = rightImageView
-//        textfield.rightViewMode = .always
-        
-        textfield.setLeftTetView(text: "Customized text")
+        textfield.setLeftTextView(text: "Customized text")
         return textfield
     }()
     
@@ -104,8 +120,8 @@ class ViewController: UIViewController {
     }
     
     func resetForm() {
-        originalTextfield.text = ""
-        customizedtextfield.text = ""
+        originalTextField.text = ""
+        customizedTextField.text = ""
         
         errorTextForNormalTextField.isHidden = false
         errorTextForCustomizedTextField.isHidden = false
@@ -114,46 +130,53 @@ class ViewController: UIViewController {
         errorTextForCustomizedTextField.text = "Required"
     }
     func style() {
+        originalTextField.translatesAutoresizingMaskIntoConstraints = false
         customizedCongTextfield.translatesAutoresizingMaskIntoConstraints = false
-        originalTextfield.translatesAutoresizingMaskIntoConstraints = false
-        customizedtextfield.translatesAutoresizingMaskIntoConstraints = false
+        textFieldWithRightImageView.translatesAutoresizingMaskIntoConstraints = false
+        customizedTextField.translatesAutoresizingMaskIntoConstraints = false
         errorTextForNormalTextField.translatesAutoresizingMaskIntoConstraints = false
         errorTextForCustomizedTextField.translatesAutoresizingMaskIntoConstraints = false
     }
     
     func layout() {
-        self.view.addSubview(originalTextfield)
-        self.view.addSubview(customizedtextfield)
+        self.view.addSubview(originalTextField)
+        self.view.addSubview(customizedTextField)
+        self.view.addSubview(textFieldWithRightImageView)
         self.view.addSubview(customizedCongTextfield)
         self.view.addSubview(errorTextForNormalTextField)
         self.view.addSubview(errorTextForCustomizedTextField)
         
-        originalTextfield.setNeedsLayout()
-        originalTextfield.layoutIfNeeded()
+        originalTextField.setNeedsLayout()
+        originalTextField.layoutIfNeeded()
         
         NSLayoutConstraint.activate([
+            
+            textFieldWithRightImageView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: Constants.lineSpacer),
+            textFieldWithRightImageView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -Constants.lineSpacer),
+            
+            customizedCongTextfield.topAnchor.constraint(equalTo: textFieldWithRightImageView.safeAreaLayoutGuide.bottomAnchor, constant: 60),
 
             customizedCongTextfield.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: Constants.lineSpacer),
             customizedCongTextfield.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -Constants.lineSpacer),
       
-            originalTextfield.topAnchor.constraint(equalTo: customizedCongTextfield.safeAreaLayoutGuide.bottomAnchor, constant: 60),
+            originalTextField.topAnchor.constraint(equalTo: customizedCongTextfield.safeAreaLayoutGuide.bottomAnchor, constant: 60),
             
-            originalTextfield.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
-            originalTextfield.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor),
-            originalTextfield.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: Constants.lineSpacer),
-            originalTextfield.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -Constants.lineSpacer),
+            originalTextField.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
+            originalTextField.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor),
+            originalTextField.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: Constants.lineSpacer),
+            originalTextField.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -Constants.lineSpacer),
             
-            errorTextForNormalTextField.topAnchor.constraint(equalTo: originalTextfield.safeAreaLayoutGuide.bottomAnchor, constant: Constants.lineSpacer),
+            errorTextForNormalTextField.topAnchor.constraint(equalTo: originalTextField.safeAreaLayoutGuide.bottomAnchor, constant: Constants.lineSpacer),
             errorTextForNormalTextField.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: Constants.lineSpacer),
             errorTextForNormalTextField.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -Constants.lineSpacer),
             
-            customizedtextfield.topAnchor.constraint(equalTo: errorTextForNormalTextField.safeAreaLayoutGuide.bottomAnchor, constant: Constants.lineSpacer),
-            customizedtextfield.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: Constants.lineSpacer),
-            customizedtextfield.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -Constants.lineSpacer),
+            customizedTextField.topAnchor.constraint(equalTo: errorTextForNormalTextField.safeAreaLayoutGuide.bottomAnchor, constant: Constants.lineSpacer),
+            customizedTextField.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: Constants.lineSpacer),
+            customizedTextField.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -Constants.lineSpacer),
             
             // If needed, we can add height constraint for the textfield here
             
-            errorTextForCustomizedTextField.topAnchor.constraint(equalTo: customizedtextfield.bottomAnchor, constant: Constants.lineSpacer),
+            errorTextForCustomizedTextField.topAnchor.constraint(equalTo: customizedTextField.bottomAnchor, constant: Constants.lineSpacer),
             errorTextForCustomizedTextField.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: Constants.lineSpacer),
             errorTextForCustomizedTextField.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -Constants.lineSpacer)
             
