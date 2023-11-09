@@ -30,19 +30,20 @@ class MyTableViewController: UITableViewController {
     // UITableViewDataSource function
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = self.tableView.dequeueReusableCell(withIdentifier: "UITableViewCell", for: indexPath)
+        cell.backgroundColor = .green
         
-        if indexPath.row == 0 { // Use UITableViewCell for the first row
-            cell.backgroundColor = .green
-            
+        if indexPath.row == 0 { // Assign UITextView to an UITableViewCell for the first row
             // Add a UITextView if it doesn't exist
             if cell.viewWithTag(100) == nil {
                 let textView = UITextView()
                 textView.translatesAutoresizingMaskIntoConstraints = false // Use Auto Layout
+                
                 textView.tag = 100
                 textView.delegate = self
                 textView.backgroundColor = .yellow
                 
                 cell.contentView.addSubview(textView)
+                cell.backgroundColor = .green
                 
                 NSLayoutConstraint.activate([
                     textView.leadingAnchor.constraint(equalTo: cell.contentView.leadingAnchor),
@@ -51,9 +52,28 @@ class MyTableViewController: UITableViewController {
                     textView.bottomAnchor.constraint(equalTo: cell.contentView.bottomAnchor)
                 ])
                 
-            // To allow the user to interact with the textField, you need to make sure that cell selection doesn't interfere
-            cell.selectionStyle = .none
+                // To allow the user to interact with the textField, you need to make sure that cell selection doesn't interfere
+                cell.selectionStyle = .none
             }
+        } else if indexPath.row == 1 { // Assign customized text field to an UITableViewCell for the second rows
+            let congTextField = CongUITextField()
+            congTextField.backgroundColor = .blue
+            congTextField.translatesAutoresizingMaskIntoConstraints = false
+            congTextField.placeholder = "Cong Text Field View"
+            
+            cell.contentView.addSubview(congTextField)
+            cell.contentView.backgroundColor = .brown
+            
+            NSLayoutConstraint.activate([
+                congTextField.leadingAnchor.constraint(equalTo: cell.contentView.leadingAnchor),
+                congTextField.trailingAnchor.constraint(equalTo: cell.contentView.trailingAnchor),
+                congTextField.topAnchor.constraint(equalTo: cell.contentView.topAnchor),
+                congTextField.bottomAnchor.constraint(equalTo: cell.contentView.bottomAnchor)
+//                congTextField.leadingAnchor.constraint(equalTo: cell.contentView.leadingAnchor, constant: 16),
+//                congTextField.trailingAnchor.constraint(equalTo: cell.contentView.trailingAnchor, constant: -16),
+//                congTextField.topAnchor.constraint(equalTo: cell.contentView.topAnchor, constant: 8),
+//                congTextField.bottomAnchor.constraint(equalTo: cell.contentView.bottomAnchor, constant: -8),
+            ])
         }
         return cell
     }

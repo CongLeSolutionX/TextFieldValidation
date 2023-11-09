@@ -15,7 +15,7 @@ class ViewController: UIViewController {
     lazy var originalTextfield: UITextField = {
         // let textFieldFrame = CGRect(x: 20, y: 100, width: 300, height: 40)
         let textfield = UITextField()
-        textfield.placeholder = "Enter text here"
+        textfield.placeholder = "Original text field"
         textfield.borderStyle = .roundedRect
         textfield.autocorrectionType = .no
         textfield.keyboardType = .default
@@ -36,6 +36,32 @@ class ViewController: UIViewController {
         textfield.clearButtonMode = .whileEditing
         textfield.contentVerticalAlignment = .center
         textfield.delegate = self
+        
+        let customCloseButton = UIButton(type: .close)
+        
+        let padding: CGFloat = 20
+        let rightView = UIView(
+            frame: CGRect(
+                x: 0,
+                y: 0,
+                width: customCloseButton.frame.width + padding,
+                height: customCloseButton.frame.height
+            )
+        )
+        rightView.backgroundColor = .orange
+        rightView.addSubview(customCloseButton)
+        customCloseButton.translatesAutoresizingMaskIntoConstraints = true
+        
+        NSLayoutConstraint.activate([
+            customCloseButton.topAnchor.constraint(equalTo: rightView.topAnchor),
+            customCloseButton.bottomAnchor.constraint(equalTo: rightView.bottomAnchor),
+            customCloseButton.leadingAnchor.constraint(equalTo: rightView.leadingAnchor),
+            customCloseButton.trailingAnchor.constraint(equalTo: rightView.trailingAnchor, constant: -padding)
+        ])
+        
+        textfield.rightView = rightView
+        textfield.rightViewMode = .always
+        
         textfield.setLeftTetView(text: "Customized text")
         return textfield
     }()
@@ -50,6 +76,17 @@ class ViewController: UIViewController {
         textfield.clearButtonMode = .whileEditing
         textfield.contentVerticalAlignment = .center
         textfield.delegate = self
+        
+        let rightImageView = UIImageView()
+        rightImageView.backgroundColor = .cyan
+        rightImageView.image = UIImage(systemName: "house")
+        rightImageView.contentMode = .scaleAspectFit
+        rightImageView.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+        
+        
+        textfield.rightView = rightImageView
+        textfield.rightViewMode = .always
+        
         textfield.setLeftTextView(text: "Cong")
         return textfield
     }()
@@ -88,24 +125,6 @@ class ViewController: UIViewController {
         self.view.addSubview(customizedCongTextfield)
         self.view.addSubview(errorTextForNormalTextField)
         self.view.addSubview(errorTextForCustomizedTextField)
-        
-        let customCloseButton = UIButton(type: .close)
-        
-        let padding: CGFloat = 20
-        let rightView = UIView(frame: CGRect(x: 0, y: 0, width: customCloseButton.frame.width + padding, height: customCloseButton.frame.height))
-        rightView.backgroundColor = .red
-        rightView.addSubview(customCloseButton)
-        customCloseButton.translatesAutoresizingMaskIntoConstraints = true
-        
-        NSLayoutConstraint.activate([
-            customCloseButton.topAnchor.constraint(equalTo: rightView.topAnchor),
-            customCloseButton.bottomAnchor.constraint(equalTo: rightView.bottomAnchor),
-            customCloseButton.leadingAnchor.constraint(equalTo: rightView.leadingAnchor),
-            customCloseButton.trailingAnchor.constraint(equalTo: rightView.trailingAnchor, constant: -padding)
-        ])
-        
-        originalTextfield.rightView = rightView
-        originalTextfield.rightViewMode = .always
         
         originalTextfield.setNeedsLayout()
         originalTextfield.layoutIfNeeded()
