@@ -37,7 +37,18 @@ class MyTableViewController: UITableViewController {
             if cell.viewWithTag(100) == nil {
                 let textField = UITextField()
                 textField.translatesAutoresizingMaskIntoConstraints = false // Use Auto Layout
-                textField.placeholder = "Original text field"
+                
+                let placeholderText = "Customized Place Holder Text"
+                let placeholderAttributes: [NSAttributedString.Key: Any] = [
+                    .foregroundColor: UIColor.blue
+                ]
+                
+                let attributedPlaceholder = NSAttributedString(
+                    string: placeholderText,
+                    attributes: placeholderAttributes
+                )
+                
+                textField.attributedPlaceholder = attributedPlaceholder
                 textField.tag = 100
                 textField.delegate = self
                 textField.backgroundColor = .yellow
