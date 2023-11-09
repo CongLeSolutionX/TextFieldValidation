@@ -12,6 +12,8 @@ open class CongUITextField: UITextField, ThemeableElement {
     public var theme: CongUIThemeBase? = .currentTheme
     var textFieldIdentifier: String = ""
     
+    open var shouldAddPaddingToClearButton: Bool = false
+    
     override open var placeholder: String? {
         didSet {
             self.reloadTheme()
@@ -49,13 +51,14 @@ open class CongUITextField: UITextField, ThemeableElement {
             width: width, height: bounds.size.height
         )
     }
+   
     override open func clearButtonRect(forBounds bounds: CGRect) -> CGRect {
         var clearButtonRect = super.clearButtonRect(forBounds: bounds)
-        
-        /// Move the button to the left by subtracting 20 points from the x-coordinate
-        /// This effectively adds 10 points padding to the right edge of the button
-        clearButtonRect.origin.x -= 20
-        
+        if shouldAddPaddingToClearButton {
+            /// Move the button to the left by subtracting 20 points from the x-coordinate
+            /// This effectively adds 20 points padding to the right edge of the button
+            clearButtonRect.origin.x -= 20
+        }
         return clearButtonRect
     }
     

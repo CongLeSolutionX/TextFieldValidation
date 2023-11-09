@@ -59,8 +59,18 @@ class ViewController: UIViewController {
             customCloseButton.trailingAnchor.constraint(equalTo: rightView.trailingAnchor, constant: -padding)
         ])
         
-        textfield.rightView = rightView
-        textfield.rightViewMode = .always
+// We can assign UIImageView the the right view
+//        textfield.rightView = rightView
+//        textfield.rightViewMode = .always
+//       
+//        let rightImageView = UIImageView()
+//        rightImageView.backgroundColor = .cyan
+//        rightImageView.image = UIImage(systemName: "house")
+//        rightImageView.contentMode = .scaleAspectFit
+//        rightImageView.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+//        
+//        textfield.rightView = rightImageView
+//        textfield.rightViewMode = .always
         
         textfield.setLeftTetView(text: "Customized text")
         return textfield
@@ -77,16 +87,8 @@ class ViewController: UIViewController {
         textfield.contentVerticalAlignment = .center
         textfield.delegate = self
         
-        let rightImageView = UIImageView()
-        rightImageView.backgroundColor = .cyan
-        rightImageView.image = UIImage(systemName: "house")
-        rightImageView.contentMode = .scaleAspectFit
-        rightImageView.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
-        
-        
-        textfield.rightView = rightImageView
-        textfield.rightViewMode = .always
-        
+        textfield.shouldAddPaddingToClearButton = true
+
         textfield.setLeftTextView(text: "Cong")
         return textfield
     }()
